@@ -1,17 +1,17 @@
-namespace Wuziqi
-{
-    internal static class Program
-    {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        static void Main()
-        {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
-        }
-    }
-}
+using WuziqiServer.Services.Interfaces;
+using WuziqiServer.Services;
+
+
+var builder = WebApplication.CreateBuilder(args);
+
+            // ×¢²á·þÎñ
+builder.Services.AddSingleton<IRoomService, RoomService>();
+builder.Services.AddControllers();
+
+var app = builder.Build();
+
+app.UseRouting();
+app.MapControllers();
+app.Run();
+
+    

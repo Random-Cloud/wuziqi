@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 namespace Wuziqi
 {
     // 一些静态常量
-    class MainSize
+    class ClientConstants
     {
+        public static string PlayerName { get; set; } = "Player"; // 玩家昵称
         public static int FormWidth { get; } = 1400;
         public static int FormHeight { get; } = 1000;
         public static int BoardWidth { get; } = 930; // 15列 = 15*62 - 2*50（边距）

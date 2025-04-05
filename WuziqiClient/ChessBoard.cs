@@ -11,9 +11,9 @@ namespace Wuziqi
         // 绘制棋盘
         public static void DrawCB(Graphics g) {
             // 棋盘格子大小
-            int GapWidth = MainSize.CellSize;
+            int GapWidth = ClientConstants.CellSize;
             // 棋盘格子数
-            int GapNum = MainSize.BoardWidth / GapWidth - 1;
+            int GapNum = ClientConstants.BoardWidth / GapWidth - 1;
             
             g.Clear(Color.Bisque);
             Pen pen = new Pen(Color.FromArgb(160, 120, 80), 2f);

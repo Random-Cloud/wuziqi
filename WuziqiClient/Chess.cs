@@ -18,13 +18,20 @@ namespace Wuziqi
         private int accurateX;
         private int accurateY;
         private Rectangle rect;
+        private static Chess instance;
 
-
-        public Chess(Panel p) {
+        private Chess(Panel p) {
             g = p.CreateGraphics();
         }
-        
-        private void FillChess(bool isBlackTurn) {
+
+        public static Chess GetInstance(Panel p) {
+            if (instance == null) {
+                instance = new Chess(p);
+            }
+            return instance;
+        }
+
+        private void DrawChess(bool isBlackTurn) {
             if (isBlackTurn) {
                 g.FillEllipse(ChessBrush.blackBrush, rect);
             }
@@ -33,15 +40,15 @@ namespace Wuziqi
             }
         }
         private void InitCoordinate(int placementX, int placementY) {
-            accurateX = placementX * MainSize.CellSize + MainSize.ChessBoardMargin - MainSize.ChessOffset;
-            accurateY = placementY * MainSize.CellSize + MainSize.ChessBoardMargin - MainSize.ChessOffset;
+            accurateX = placementX * ClientConstants.CellSize + ClientConstants.ChessBoardMargin - ClientConstants.ChessOffset;
+            accurateY = placementY * ClientConstants.CellSize + ClientConstants.ChessBoardMargin - ClientConstants.ChessOffset;
             
             // 绘制区域（中心点坐标需根据棋盘计算）
             rect = new Rectangle(
-                x: accurateX - MainSize.ChessDiameter / 2,  // 圆心X - 半径
-                y: accurateY - MainSize.ChessDiameter / 2,  // 圆心Y - 半径
-                width: MainSize.ChessDiameter,
-                height: MainSize.ChessDiameter
+                x: accurateX - ClientConstants.ChessDiameter / 2,  // 圆心X - 半径
+                y: accurateY - ClientConstants.ChessDiameter / 2,  // 圆心Y - 半径
+                width: ClientConstants.ChessDiameter,
+                height: ClientConstants.ChessDiameter
             );
             
         }
@@ -53,7 +60,7 @@ namespace Wuziqi
             InitCoordinate(placementX, placementY);
 
             // 判断是谁的回合并绘制棋子
-            FillChess(isBlackTurn);
+            DrawChess(isBlackTurn);
         }
         public void ReDrawChess(int[,] CheckBoard) {
             g.SmoothingMode = SmoothingMode.HighQuality;
@@ -68,11 +75,11 @@ namespace Wuziqi
                             break;
                         case 1:
                             InitCoordinate(j, i);
-                            FillChess(true);
+                            DrawChess(true);
                             break;
                         case 2:
                             InitCoordinate(j, i);
-                            FillChess(false);
+                            DrawChess(false);
                             break;
                     }
                 }

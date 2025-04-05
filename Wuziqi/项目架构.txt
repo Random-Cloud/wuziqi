@@ -1,0 +1,17 @@
+{
+.
+├── Controllers/
+│   ├── RoomsController.cs     # 房间管理
+│   └── GamesController.cs     # 游戏操作
+├── Models/
+│   ├── Room.cs               # 房间模型
+│   ├── Player.cs             # 玩家模型
+│   └── GameState.cs          # 游戏状态模型
+├── Logics/                   # 游戏逻辑
+├── Services/
+│   ├── IRoomService.cs       # 房间服务接口
+│   └── RoomService.cs        # 房间服务实现
+├── Program.cs                # 启动配置
+└── appsettings.json          # 配置文件
+
+}
